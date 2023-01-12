@@ -4,7 +4,7 @@ dotenv.config({path: './src/.env'});
 
 module.exports = {
 	local: {
-		localUrlDatabse: process.env.MONGO_URI,
+		localUrlDatabse: process.env.DB_URI,
 		secret: "password",
 	},
 }
