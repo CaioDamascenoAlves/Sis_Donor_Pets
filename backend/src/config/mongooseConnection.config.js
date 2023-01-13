@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const db = require('./db.config');
 
+mongoose.set('strictQuery', true);
+
 const connectToDB = async () => {
 try {
 await mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
