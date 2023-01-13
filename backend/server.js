@@ -1,12 +1,11 @@
-// server.js
 const app = require ('./src/app');
+const http = require('http');
 
 const port = process.env.PORT || 3000;
+const server = http.createServer(app);
 
-const server = () => {
-    app.listen(port, () =>{
-        console.log('Aplicação executando na porta ...:', port);
-    });
-};
+server.on('listening',()=>{
+  console.log('Aplicação executando na porta ...:', port);
+});
 
 module.exports = server;
