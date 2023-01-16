@@ -13,16 +13,6 @@ const userSchema = new Schema({
       token: { type: String, required: true },
     },
   ],
-  adopt: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Pet'
-	},
-	adoptionOffers: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Pet'
-		}
-	],
 }, {
   timestamps: true,
   collection: 'users',
