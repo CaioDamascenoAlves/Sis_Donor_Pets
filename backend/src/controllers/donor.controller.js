@@ -28,7 +28,7 @@ const registerNewUser = async (req, res) => {
         }
 
         const { user, token } = await saveUserAndGenerateAuthToken(req.body);
-        res.status(201).json({ message: "User created successfully!", user, token });
+        res.status(201).json({ message: "New user registered successfully", user, token });
     } catch (err) {
         res.status(400).json({ err });
     }
