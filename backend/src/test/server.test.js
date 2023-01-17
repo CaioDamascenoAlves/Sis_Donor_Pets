@@ -1,21 +1,9 @@
-const server = require('../../server');
+const request = require('supertest');
+const app = require('../../server');
 
-// Definindo um conjunto de testes para a configuração do servidor
 describe('Server Configuration', () => {
-    let serverInstance;
-
-    //Inicia o servidor antes de todos os testes
-    beforeAll(() => {
-        serverInstance = server.listen(process.env.PORT || 3000);
-    });
-    
-    //Para o servidor antes de todos os testes
-    afterAll(() => {
-        server.close();
-    });
-
-    //Teste se o servidor está escutando na porta correta
-    it('should start the server on the correct port', () => {
-        expect(server.listening).toBe(true);
+    it('should start the server on the correct port', async () => {
+        const response = await request(app).get('/api');
+        expect(response.statusCode).toBe(200);
     });
 });

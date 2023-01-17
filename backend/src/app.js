@@ -1,3 +1,7 @@
+const mongooseConnection = require("./config/mongooseConnection.config");
+
+mongooseConnection.connectToDB()
+
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
