@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "jest --env node nodemon",
+    "start": "npm run test && npm run dev",
     "dev": "nodemon",
-    "test": "jest --env node --detectOpenHandles"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,8 @@
     "morgan": "^1.10.0",
     "node-mocks-http": "^1.12.1",
     "npm": "^9.2.0",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
