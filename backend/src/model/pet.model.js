@@ -12,6 +12,10 @@ const petSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    pessoa: {
+      type: Schema.Types.ObjectId,
+      ref: "Pessoa",
+    },
     adotado: { type: Boolean, default: false },
   },
   {
@@ -23,7 +27,3 @@ const petSchema = new Schema(
 const Pet = mongoose.model("Pet", petSchema);
 
 module.exports = Pet;
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;

@@ -2,15 +2,19 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const adocaoSchema = new Schema(
+const doacaoSchema = new Schema(
   {
     pet: {
-        type: Schema.Types.ObjectId,
-        ref: "Pet",
-      },
+      type: Schema.Types.ObjectId,
+      ref: "Pet",
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
+    },
+    pessoa: {
+      type: Schema.Types.ObjectId,
+      ref: "Pessoa",
     },
   },
   {
@@ -19,7 +23,6 @@ const adocaoSchema = new Schema(
   }
 );
 
-const Adocao = mongoose.model("Adocao", adocaoSchema);
+const Doacao = mongoose.model("Doacao", doacaoSchema);
 
-module.exports = Adocao;
-
+module.exports = Doacao;
