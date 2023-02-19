@@ -8,15 +8,11 @@ const petSchema = new Schema(
     idade: { type: Number, required: true },
     tipo: { type: String, required: true },
     raca: { type: String, required: true },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-    pessoa: {
-      type: Schema.Types.ObjectId,
-      ref: "Pessoa",
-    },
-    adotado: { type: Boolean, default: false },
+    // pessoa: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "Pessoa",
+    // },
+    // adotado: { type: Boolean, default: false },
   },
   {
     timestamps: true,
