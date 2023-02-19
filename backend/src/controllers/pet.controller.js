@@ -1,31 +1,67 @@
-const Pet = require("../model/pet.model");
 const Pessoa = require("../model/pessoa.model");
+const Pet = require("../model/pet.model");
 
-exports.cratePet = async (req, res) => {
+exports.createPet = async (req, res) => {
   try {
-    const { nome, idade, tipo, raca } = req.body;
-    // const pessoa = await Pessoa.findOne({ pessoaId });
+    const user = req.userData;
 
-    // if (!pessoa) {
-    //   return res.status(400).json({ message: "Pessoa não encontrada." });
-    // }
+    // Verifica se o usuário já criou uma pessoa
+    const pessoa = await Pessoa.findOne({ user: user._id });
+    if (!pessoa) {
+      return res.status(400).json({
+        message: "Você precisa criar uma pessoa antes de criar um pet",
+      });
+    }
 
-    const pet = new Pet({
-      nome,
-      idade,
-      tipo,
-      raca,
-    //   pessoa: pessoa._id,
+    const newPet = new Pet({
+      nome: req.body.nome,
+      idade: req.body.idade,
+      tipo: req.body.tipo,
+      raca: req.body.raca,
+      pessoa: pessoa._id,
     });
-    await pet.save();
+    await newPet.save();
+
     return res.status(200).json({
       message: "Pet criado com sucesso!",
-      pet,
+      pet: newPet,
     });
   } catch (error) {
-	return res.status(500).json({
-		message: "Ocorreu um erro ao criar o Pet",
-		error,
-	});
+    return res.status(500).json({
+      message: "Ocorreu um erro ao criar o Pet",
+      error,
+    });
   }
 };
+
+exports.getPet = async (req, res) => {
+	try {
+	  const user = req.userData;
+  
+	  // Verifica se o usuário já criou uma pessoa
+	  const pessoa = await Pessoa.findOne({ user: user._id });
+	  if (!pessoa) {
+		return res.status(400).json({
+		  message: "Você precisa criar uma pessoa antes de criar um pet",
+		});
+	  }
+  
+	  // Verifica se o pet pertence à pessoa do usuário logado
+	  const pet = await Pet.findOne({ id: req.params._id, pessoa: pessoa._id });
+	  if (!pet) {
+		return res.status(404).json({
+		  message: "Pet não encontrado",
+		});
+	  }
+  
+	  return res.status(200).json({
+		pet,
+	  });
+	} catch (error) {
+	  return res.status(500).json({
+		message: "Ocorreu um erro ao obter o Pet",
+		error,
+	  });
+	}
+  };
+  
