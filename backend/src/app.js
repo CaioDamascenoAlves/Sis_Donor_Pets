@@ -1,6 +1,6 @@
 const mongooseConnection = require("./config/mongooseConnection.config");
 
-mongooseConnection.connectToDB()
+mongooseConnection.connectToDB();
 
 const express = require("express");
 const cors = require("cors");
@@ -11,6 +11,7 @@ const index = require("./routes/index");
 const userRoutes = require("./routes/user.routes");
 const petRoutes = require("./routes/pet.routes");
 const pessoaRoutes = require("./routes/pessoa.routes");
+const doacaoRoutes = require("./routes/doacao.routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,5 +23,6 @@ app.use(index);
 app.use("/api/", userRoutes);
 app.use("/api/", pessoaRoutes);
 app.use("/api/", petRoutes);
+app.use("/api/", doacaoRoutes);
 
 module.exports = app;
