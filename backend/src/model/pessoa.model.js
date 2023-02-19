@@ -8,9 +8,10 @@ const pessoaSchema = new Schema(
     numero: { type: Number, required: true },
     complemento: { type: String, required: true },
     documento: { type: String, required: true },
-    user: {
+    criado_por: {
       type: Schema.Types.ObjectId,
       ref: "User",
+	  required: true
     },
   },
   {
