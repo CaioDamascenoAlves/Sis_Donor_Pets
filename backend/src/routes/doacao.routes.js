@@ -9,4 +9,7 @@ router.post('/doacao', auth, doacaoController.createDoacao);
 // ==> Rota responsável por Buscar uma 'Doacao': (GET): localhost:3000/api/doacao
 router.get('/doacao', auth, doacaoController.getDoacoes);
 
+// ==> Rota responsável por Editar uma 'Doacao': (PUT): localhost:3000/api/doacao
+router.put('/doacao', auth, doacaoController.updateDoacao);
+
 module.exports = router;
