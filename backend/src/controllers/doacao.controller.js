@@ -5,7 +5,7 @@ const Pessoa = require("../model/pessoa.model");
 exports.createDoacao = async (req, res) => {
   try {
     const user = req.userData;
-    const pet = await Pet.findById(req.body.pet);
+    const pet = await Pet.findOne(req.body.pet);
     const pessoa = await Pessoa.findOne({ user: user._id });
 
     if (!pet) {
@@ -52,6 +52,32 @@ exports.getDoacoes = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: "Ocorreu um erro ao buscar as doações",
+      error,
+    });
+  }
+};
+
+exports.updateDoacao = async (req, res) => {
+  try {
+    const doacao = await Doacao.findOneAndUpdate(
+      req.params._id,
+      {
+        data: req.body.data,
+        pet: req.body.pet,
+      },
+      { new: true }
+    ).populate("pet");
+
+    if (!doacao) {
+      return res.status(404).json({ message: "Doação não encontrada" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Doação atualizada com sucesso", doacao });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao atualizar a Doação",
       error,
     });
   }
