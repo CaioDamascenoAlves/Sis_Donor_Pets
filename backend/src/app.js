@@ -12,6 +12,7 @@ const userRoutes = require("./routes/user.routes");
 const petRoutes = require("./routes/pet.routes");
 const pessoaRoutes = require("./routes/pessoa.routes");
 const doacaoRoutes = require("./routes/doacao.routes");
+const adocaoRoutes = require("./routes/adocao.routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,6 +24,7 @@ app.use(index);
 app.use("/api/", userRoutes);
 app.use("/api/", pessoaRoutes);
 app.use("/api/", petRoutes);
+app.use("/api/", adocaoRoutes);
 app.use("/api/", doacaoRoutes);
 
 module.exports = app;
