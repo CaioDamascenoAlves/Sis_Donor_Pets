@@ -53,60 +53,23 @@ exports.getAdocao = async (req, res) => {
   }
 };
 
-exports.getAdocoes = async (req, res) => {
-  try {
-    const adocoes = await Adocao.find()
-      .populate({
-        path: "doacao",
-        populate: [
-          {
-            path: "pet",
-            select: "-adotado",
-          },
-          {
-            path: "user",
-            select: "-password",
-          },
-          {
-            path: "pessoa",
-          },
-        ],
-      })
-      .populate("user");
-
-    return res.status(200).json({
-      message: "Adoções encontradas com sucesso!",
-      adocoes,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: "Ocorreu um erro ao buscar as Adoções",
-      error,
-    });
-  }
-};
-
 exports.updateAdocao = async (req, res) => {
-  const { id } = req.params;
-  const { data } = req.body;
-  const userId = req.userData.userId;
-
   try {
-    const adocao = await Adocao.findOne(id);
+    const user = req.userData;
+    const { id } = req.params;
+    const { data } = req.body;
+
+    const adocao = await Adocao.findOneAndUpdate(
+      { _id: id, user: user._id },
+      { data },
+      { new: true }
+    ).populate("doacao");
 
     if (!adocao) {
-      return res.status(404).json({ message: "Adoção não encontrada" });
-    }
-
-    // Verifica se o usuário logado é o mesmo que criou a adoção
-    if (adocao.user.toString() !== userId) {
       return res
-        .status(403)
-        .json({ message: "Você não tem permissão para atualizar essa adoção" });
+        .status(404)
+        .json({ message: "Adoção não encontrada ou não pertence ao usuário" });
     }
-
-    adocao.data = data;
-    await adocao.save();
 
     return res.status(200).json({
       message: "Adoção atualizada com sucesso!",
@@ -114,8 +77,41 @@ exports.updateAdocao = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Ocorreu um erro ao atualizar a adoção",
+      message: "Ocorreu um erro ao atualizar a Adoção",
       error,
     });
   }
 };
+
+// exports.getAdocoes = async (req, res) => {
+//   try {
+//     const adocoes = await Adocao.find()
+//       .populate({
+//         path: "doacao",
+//         populate: [
+//           {
+//             path: "pet",
+//             select: "-adotado",
+//           },
+//           {
+//             path: "user",
+//             select: "-password",
+//           },
+//           {
+//             path: "pessoa",
+//           },
+//         ],
+//       })
+//       .populate("user");
+
+//     return res.status(200).json({
+//       message: "Adoções encontradas com sucesso!",
+//       adocoes,
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       message: "Ocorreu um erro ao buscar as Adoções",
+//       error,
+//     });
+//   }
+// };

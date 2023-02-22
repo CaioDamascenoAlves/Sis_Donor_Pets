@@ -32,7 +32,7 @@ const registerNewUser = async (req, res) => {
     const { user, token } = await saveUserAndGenerateAuthToken(req.body);
     res
       .status(201)
-      .json({ message: "New user registered successfully", user, token });
+      .json({ message: "New user registered successfully", token });
   } catch (err) {
     res.status(400).json({ err });
   }
