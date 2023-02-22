@@ -26,7 +26,7 @@ const doacaoSchema = new Schema(
   },
   {
     timestamps: true,
-    collection: "adocoes",
+    collection: "doacoes",
   }
 );
 
