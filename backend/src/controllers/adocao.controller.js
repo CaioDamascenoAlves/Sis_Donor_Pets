@@ -59,21 +59,23 @@ exports.updateAdocao = async (req, res) => {
     const { id } = req.params;
     const { data } = req.body;
 
-    const adocao = await Adocao.findOneAndUpdate(
-      { _id: id, user: user._id },
-      { data },
-      { new: true }
-    ).populate("doacao");
+    const adocao = await Adocao.findOneAndUpdate(id).populate("doacao");
 
     if (!adocao) {
-      return res
-        .status(404)
-        .json({ message: "Adoção não encontrada ou não pertence ao usuário" });
+      return res.status(404).json({ message: "Adoção não encontrada" });
     }
+
+    if (adocao.user.toString() !== user._id.toString()) {
+      return res.status(403).json({ message: "Acesso negado" });
+    }
+
+    adocao.data = data;
+
+    const updatedAdocao = await adocao.save();
 
     return res.status(200).json({
       message: "Adoção atualizada com sucesso!",
-      adocao,
+      adocao: updatedAdocao,
     });
   } catch (error) {
     return res.status(500).json({
