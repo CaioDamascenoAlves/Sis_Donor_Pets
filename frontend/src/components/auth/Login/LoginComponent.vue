@@ -19,8 +19,8 @@
 
                   <div class="form-outline mb-4">
                     <input type="email" id="form2Example11" class="form-control"
-                      placeholder="Phone number or email address" />
-                    <label class="form-label" for="form2Example11">Username</label>
+                      placeholder="Email address" />
+                    <label class="form-label" for="form2Example11">Email</label>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -29,9 +29,7 @@
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
-                      in</button>
-                    <a class="text-muted" href="#!">Forgot password?</a>
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log in</button>
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
@@ -68,7 +66,7 @@ background: #fccb90;
 background: -webkit-linear-gradient(to right, #2427ee, #d8363a, #dd3675, #6645b4);
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, #0292C9, #FBB540, #E72E3D);
+background: linear-gradient(to right, #0292C9, #E72E3D);
 }
 
 @media (min-width: 768px) {
