@@ -5,11 +5,11 @@
 				<a class="navbar-brand order-md-last">Botão</a>
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item">
-						<router-link class="nav-link" to="/">Home</router-link>
+						<router-link class="nav-link text-white	" to="/">Home</router-link>
 					</li>
 				</ul>
 			</nav>
-			<div class="container mt-5">
+			<div class="container ">
 				<router-view></router-view>
 			</div>
 		</div>
