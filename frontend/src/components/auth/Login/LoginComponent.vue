@@ -1,13 +1,13 @@
 <template>
 	<section class="h-100 gradient-form" style="background-color: #fff;">
-		<div class="container py-5 h-100">
+		<div class="container h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-xl-10">
 					<h3 class="form-label" for="Login">Log in</h3>
 					<div class="card rounded-3 text-black">
 						<div class="row g-0">
 							<div class="col-lg-6">
-								<div class="card-body p-md-5 mx-md-4">
+								<div class="card-body mx-md-4">
 
 									<div class="text-center">
 										<img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png"

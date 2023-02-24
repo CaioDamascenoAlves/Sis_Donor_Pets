@@ -1,6 +1,6 @@
 <template>
 	<section class="h-100 gradient-form" style="background-color: #fff;">
-		<div class="container py-5 h-100">
+		<div class="container h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-xl-10">
 					<h3 class="form-label" for="nome">Cadastro de Usuário</h3>
@@ -10,12 +10,12 @@
 						<div class="row g-0">
 							<div class="col-lg-6">
 
-								<div class="card-body p-md-3 mx-md-4">
+								<div class="card-body mx-md-4">
 
 									<div class="text-center">
 										<img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png"
 											style="width: 185px;" alt="logo">
-										<h4 class="mt-1 mb-5 pb-1">PETADO</h4>
+										<h4 class="mt-1">PETADO</h4>
 									</div>
 
 									<form v-on:submit.prevent="registerSubmitUserForm()">
@@ -28,7 +28,7 @@
 													'is-invalid': isSubmitted && $v.registerForm.name.$error,
 												}" />
 											<div v-if="isSubmitted && !$v.registerForm.name.required"
-												class="invalid-feedback">
+												class="invalid-feedback text-center">
 												O campo nome é obrigatório!
 											</div>
 										</div>
@@ -66,7 +66,7 @@
 										<!--FIM BLOCO: Password-->
 
 										<!--INÍCIO BLOCO: Botão-->
-										<div class="text-center pt-1 mb-5 pb-1">
+										<div class="text-center pb-1">
 											<button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
 												type="button" @click="submitRegisterUser">Cadastrar</button>
 										</div>
