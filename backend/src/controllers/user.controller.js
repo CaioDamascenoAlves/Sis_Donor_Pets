@@ -1,4 +1,8 @@
 const User = require("../model/user.model");
+const Adocao = require('../model/adocao.model');
+const Doacao = require('../model/doacao.model');
+const Pet = require('../model/pet.model');
+const Pessoa = require('../model/pessoa.model');
 
 const checkIfEmailExists = async (email) => {
   let isUser;
@@ -62,10 +66,34 @@ const returnUserProfile = async (req, res) => {
   await res.json(req.userData);
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    const userId = req.userData._id; // ID do usuário autenticado
+    const user = await User.findById(userId); // Encontra o usuário a ser deletado
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+
+    // Remove todos os documentos relacionados ao usuário
+    await Adocao.deleteMany({ user: userId });
+    await Doacao.deleteMany({ user: userId });
+    await Pet.deleteMany({ user: userId });
+    await Pessoa.deleteMany({ user: userId });
+    await User.deleteOne({ _id: userId });
+
+    return res.status(200).json({ message: 'Usuário deletado com sucesso!' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Ocorreu um erro ao deletar o usuário', error });
+  }
+};
+
+
 module.exports = {
   checkIfEmailExists,
   saveUserAndGenerateAuthToken,
   registerNewUser,
   loginUser,
   returnUserProfile,
+  deleteUser,
 };

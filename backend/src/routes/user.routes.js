@@ -12,4 +12,7 @@ router.post('/login',  userController.loginUser);
 // ==> Rota responsável por Criar um novo 'User': (GET): localhost:3000/api/register
 router.get('/userProfile', auth, userController.returnUserProfile);
 
+// ==> Rota responsável por Criar um novo 'User': (GET): localhost:3000/api/register
+router.delete('/deleteUser', auth, userController.deleteUser);
+
 module.exports = router;
