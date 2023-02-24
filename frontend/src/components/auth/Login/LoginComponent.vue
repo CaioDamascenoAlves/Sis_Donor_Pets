@@ -11,30 +11,30 @@
                 <div class="text-center">
                   <img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png"
                     style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">PetNation</h4>
+                  <h4 class="mt-1 mb-5 pb-1">PETADO</h4>
                 </div>
 
                 <form>
-                  <p>Please login to your account</p>
+                  <p>Por favor entre com a sua conta</p>
 
                   <div class="form-outline mb-4">
                     <input type="email" id="form2Example11" class="form-control"
-                      placeholder="Email address" />
+                      placeholder="Endereço de E-mail" />
                     <label class="form-label" for="form2Example11">Email</label>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="password" id="form2Example22" class="form-control" />
-                    <label class="form-label" for="form2Example22">Password</label>
+                    <label class="form-label" for="form2Example22">Senha</label>
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log in</button>
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Entrar</button>
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 me-2">Don't have an account?</p>
-                    <button type="button" class="btn btn-outline-primary">Create new</button>
+                    <p class="mb-0 me-2">Você não tem cadastro?</p>
+                    <button type="button" class="btn btn-outline-warning">Cadastrar</button>
                   </div>
 
                 </form>
