@@ -15,7 +15,7 @@ describe('Test the user model', () => {
   });
 
   afterEach(async () => {
-    // await mongoose.connection.dropDatabase();
+    await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
   });
 
@@ -42,14 +42,14 @@ describe('Test the user model', () => {
     expect(testUser.tokens[0].token).toBe(token);
   });
 
-//   test('It should find a user by email and password', async () => {
-//     const testUser = new User({
-//       name: 'Test User',
-//       email: 'testuser@example.com',
-//       password: 'password123',
-//     });
-//     await testUser.save();
-//     const foundUser = await User.findByCredentials('testuser@example.com', 'password123');
-//     expect(foundUser._id).toEqual(testUser._id);
-//   });
+  test('It should find a user by email and password', async () => {
+    const testUser = new User({
+      name: 'Test User',
+      email: 'testuser@example.com',
+      password: 'password123',
+    });
+    await testUser.save();
+    const foundUser = await User.findByCredentials('testuser@example.com', 'password123');
+    expect(foundUser._id).toEqual(testUser._id);
+  });
 });
