@@ -12,4 +12,7 @@ router.get('/pessoa', auth, pessoaController.getPessoa);
 // ==> Rota responsável por Atualizar um nova 'Pessoa': (PUT): localhost:3000/api/pessoa
 router.put('/pessoa', auth, pessoaController.updatePessoa);
 
+// ==> Rota responsável por Verifica se 'User' ja tem cadastro 'Pessoa': (PUT): localhost:3000/api/checkHasPessoa
+router.get('/checkHasPessoa', auth, pessoaController.checkHasPessoa);
+
 module.exports = router;
