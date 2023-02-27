@@ -2,7 +2,7 @@
 	<section class="h-100 gradient-form" style="background-color: #fff;">
 		<div class="container h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col-xl-10">
+				<div class="col-xl-10 offset-2">
 					<h3 class="form-label" for="nome">Cadastro de Usuário</h3>
 
 					<div class="card rounded-3 text-black">
@@ -13,8 +13,10 @@
 								<div class="card-body mx-md-4">
 
 									<div class="text-center">
-										<img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png"
+										<img src="https://img.freepik.com/vetores-premium/ilustracao-de-adocao-animal-jovens-sao-voluntarios-em-personagens-de-desenhos-animados-de-abrigo-de-caes-em-fundo-branco-conceito-de-cuidados-de-estimacao-voluntario-ativista-adotando-animal-abandonado-e-sem-teto_151150-1364.jpg"
 											style="width: 185px;" alt="logo">
+										<!-- <img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png"
+											style="width: 185px;" alt="logo"> -->
 										<h4 class="mt-1">PETADO</h4>
 									</div>
 
