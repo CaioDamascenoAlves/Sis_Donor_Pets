@@ -13,10 +13,39 @@ const routes = [
   {
     path: "/profile",
     name: "profile",
-    component: () => import("../components/auth/Profile/ProfileComponent"),
+    component: () => import("../components/auth/profile/ProfileComponent.vue"),
     meta: {
       requireAuth: true,
     },
+  },
+  {
+    path: "/createPessoa",
+    name: "createPessoa",
+    component: () => import("../components/auth/Pessoa/create-pessoa/CreatePessoaComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: "/createPet",
+    name: "createPet",
+    component: () => import("../components/auth/Pet/create-pet/CreatePetComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: "/updatePessoa",
+    name: "updatePessoa",
+    component: () => import("../components/auth/Pessoa/edit-pessoa/EditPessoaComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: "/home",
+    name: "home",
+    component: () => import("../components/auth/Home/HomeComponent"),
   },
   {
     path: "/register",
