@@ -75,3 +75,18 @@ exports.updatePessoa = async (req, res) => {
     });
   }
 };
+
+exports.checkHasPessoa = async (req, res) => {
+  try {
+    const pessoa = await Pessoa.findOne({ user: req.userData._id });
+    if (!pessoa) {
+      return res.status(404).json({ message: "Pessoa não encontrada" });
+    }
+    return res.status(200).json({ pessoa });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao buscar a Pessoa",
+      error,
+    });
+  }
+};
