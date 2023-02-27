@@ -1,6 +1,7 @@
 import swal from 'sweetalert';
 import { required } from 'vuelidate/lib/validators';
 import LoginService from '@/services/LoginService';
+import PessoaService from '@/services/PessoaService';
 
 export default {
   name: 'LoginComponent',
@@ -37,7 +38,13 @@ export default {
         }
 
         await LoginService.loginUser(this.loginForm);
-        this.$router.push('/home');
+
+        const hasPessoa = await PessoaService.checkHasPessoa();
+        if (hasPessoa) {
+          this.$router.push('/profile');
+        } else {
+          this.$router.push('/createPessoa');
+        }
       } catch (error) {
         swal({
           title: 'Senha Incorreta!',
