@@ -11,7 +11,6 @@ const pessoaSchema = new Schema(
     criado_por: {
       type: Schema.Types.ObjectId,
       ref: "User",
-	  required: true
     },
   },
   {
