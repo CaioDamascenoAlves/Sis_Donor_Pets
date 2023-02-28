@@ -23,19 +23,21 @@ export default {
       documento: { required },
     },
   },
-  async created() {
-    try {
-      const pessoa = await PessoaService.GetPessoa();
-      this.pessoaForm = pessoa.data;
-    } catch (error) {
-      swal({
-        title: "Oops!",
-        text: "Não foi possível obter os dados de Perfil!",
-        icon: "error",
-      });
-    }
-  },
+
   methods: {
+	updateSubmitPessoaForm() {},
+    async created() {
+      try {
+        const pessoa = await PessoaService.GetPessoa();
+        this.pessoaForm = pessoa.data;
+      } catch (error) {
+        swal({
+          title: "Oops!",
+          text: "Não foi possível obter os dados de Perfil!",
+          icon: "error",
+        });
+      }
+    },
     async updatePessoaForm() {
       try {
         this.isSubmitted = true;
@@ -50,7 +52,7 @@ export default {
           return;
         }
 
-        await DonorService.UpdatePessoa(this.pessoaForm);
+        await PessoaService.UpdatePessoa(this.pessoaForm);
         this.$router.push("/profile");
       } catch (error) {
         swal({
