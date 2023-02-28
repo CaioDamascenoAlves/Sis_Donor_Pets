@@ -35,9 +35,33 @@ const routes = [
     },
   },
   {
+    path: "/createDoacao",
+    name: "createDoacao",
+    component: () => import("../components/auth/Doacao/create-doacao/CreateDoacaoComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
     path: "/updatePessoa",
     name: "updatePessoa",
     component: () => import("../components/auth/Pessoa/edit-pessoa/EditPessoaComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: "/updatePet",
+    name: "updatePet",
+    component: () => import("../components/auth/Pet/edit-pet/EditPetComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: "/updateDoacao",
+    name: "updateDoacao",
+    component: () => import("../components/auth/Doacao/edit-doacao/EditDoacaoComponent"),
     meta: {
       requireAuth: true,
     },
