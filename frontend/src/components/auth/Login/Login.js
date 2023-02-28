@@ -38,7 +38,7 @@ export default {
         }
 
         await LoginService.loginUser(this.loginForm);
-        this.$router.push("/profile");
+        this.$router.push("/createPessoa");
 		
       } catch (error) {
         swal({

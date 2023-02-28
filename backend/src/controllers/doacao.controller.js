@@ -47,7 +47,9 @@ exports.createDoacao = async (req, res) => {
 
 exports.getDoacoes = async (req, res) => {
   try {
-    const doacoes = await Doacao.findOne().populate("pet pessoa user");
+    const doacoes = await Doacao.findOne({ user: req.userData._id }).populate(
+      "pet pessoa user"
+    );
     return res.status(200).json(doacoes);
   } catch (error) {
     return res.status(500).json({

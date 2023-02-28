@@ -4,7 +4,7 @@ exports.cratePessoa = async (req, res) => {
   try {
     // verifica se o usuário já criou uma pessoa
     const pessoaExistente = await Pessoa.findOne({
-      criado_por: req.userData._id,
+      user: req.userData._id,
     });
     if (pessoaExistente) {
       return res.status(400).json({ message: "Você já criou uma pessoa" });
@@ -16,7 +16,7 @@ exports.cratePessoa = async (req, res) => {
       numero: req.body.numero,
       complemento: req.body.complemento,
       documento: req.body.documento,
-      criado_por: req.userData._id,
+      user: req.userData._id,
     });
     await pessoa.save();
 
@@ -35,9 +35,8 @@ exports.cratePessoa = async (req, res) => {
 exports.getPessoa = async (req, res) => {
   try {
     const pessoa = await Pessoa.findOne({
-      id: req.params._id,
       user: req.userData._id,
-    });
+    }).populate("user");
     if (!pessoa) {
       return res.status(404).json({ message: "Pessoa não encontrada" });
     }
