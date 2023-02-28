@@ -3,7 +3,7 @@
 		<div class="container h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-xl-10 offset-2">
-					<h3 class="form-label" for="nome">Cadastro Pessoa</h3>
+					<h3 class="form-label" for="nome">Atualização dados Pessoa</h3>
 
 					<div class="card rounded-3 text-black">
 
