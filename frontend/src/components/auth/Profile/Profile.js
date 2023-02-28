@@ -1,6 +1,7 @@
 import VueJwtDecode from "vue-jwt-decode";
 import PessoaService from "@/services/PessoaService";
 import PetService from "@/services/PetService";
+import DoacaoService from "@/services/DoacaoService";
 
 export default {
   name: "ProfileComponent.vue",
@@ -8,7 +9,8 @@ export default {
     return {
       user: {},
       pessoa: {},
-	  pet: {},
+      pet: {},
+      doacao: {},
     };
   },
   methods: {
@@ -38,23 +40,42 @@ export default {
         console.error(error);
         swal({
           title: "Oops!",
+          text: "Não foi possível carregar os dados da Doação.",
+          icon: "error",
+        });
+      }
+    },
+    async getDoacao() {
+      try {
+        const response = await DoacaoService.GetDoacao();
+        this.doacao = response.data;
+		console.log(response)
+		console.log(this.doacao)
+      } catch (error) {
+        console.error(error);
+        swal({
+          title: "Oops!",
           text: "Não foi possível carregar os dados do Pet.",
           icon: "error",
         });
       }
     },
 
-	navigateToUpdatePessoa() {
-		this.$router.push("/updatePessoa");
-	},
-	
+    navigateToUpdatePessoa() {
+      this.$router.push("/updatePessoa");
+    },
+    navigateToUpdatePet() {
+      this.$router.push("/updatePet");
+    },
+    navigateToUpdateDoacao() {
+      this.$router.push("/updateDoacao");
+    },
   },
 
   created() {
     this.getUser();
-  },
-  mounted() {
-    this.getPessoa();
-	this.getPet();
+	this.getPessoa();
+    this.getPet();
+    this.getDoacao();
   },
 };
