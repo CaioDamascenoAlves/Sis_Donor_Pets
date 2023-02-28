@@ -1,2 +1,2 @@
 # Sis_Donor_Pets
-TDD + NodeJS + 
+TDD + NodeJS + JWT + MongoBD + Vue
