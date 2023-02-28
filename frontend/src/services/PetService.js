@@ -47,4 +47,28 @@ export default {
       });
     }
   },
+
+  async UpdatePet(pet) {
+    try {
+      const token = localStorage.getItem("jwt");
+      const response = await Api().put("/pet", pet, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { message } = response.data;
+
+      swal({
+        title: "Sucesso!",
+        text: message,
+        icon: "success",
+      });
+    } catch (error) {
+      swal({
+        title: "Oops!",
+        text: "Alguma coisa deu errado aqui!",
+        icon: "error",
+      });
+    }
+  },
 };
