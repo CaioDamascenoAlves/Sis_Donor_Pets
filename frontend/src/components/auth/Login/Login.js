@@ -1,10 +1,10 @@
-import swal from 'sweetalert';
-import { required } from 'vuelidate/lib/validators';
-import LoginService from '@/services/LoginService';
-import PessoaService from '@/services/PessoaService';
+import swal from "sweetalert";
+import { required } from "vuelidate/lib/validators";
+import LoginService from "@/services/LoginService";
+import PessoaService from "@/services/PessoaService";
 
 export default {
-  name: 'LoginComponent',
+  name: "LoginComponent",
   data() {
     return {
       loginForm: {
@@ -30,26 +30,21 @@ export default {
         this.$v.$touch();
         if (this.$v.$invalid) {
           swal({
-            title: 'Oops!',
-            text: 'Você precisa incluir todos os campos obrigatórios!',
-            icon: 'error',
+            title: "Oops!",
+            text: "Você precisa incluir todos os campos obrigatórios!",
+            icon: "error",
           });
           return;
         }
 
         await LoginService.loginUser(this.loginForm);
-
-        const hasPessoa = await PessoaService.checkHasPessoa();
-        if (hasPessoa) {
-          this.$router.push('/profile');
-        } else {
-          this.$router.push('/createPessoa');
-        }
+        this.$router.push("/profile");
+		
       } catch (error) {
         swal({
-          title: 'Senha Incorreta!',
-          text: 'Digite a senha cadastrada!',
-          icon: 'error',
+          title: "Senha Incorreta!",
+          text: "Digite a senha cadastrada!",
+          icon: "error",
         });
       }
     },
