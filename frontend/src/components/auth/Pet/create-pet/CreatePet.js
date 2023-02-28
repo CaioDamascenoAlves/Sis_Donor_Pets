@@ -41,7 +41,7 @@ export default {
         }
 
         await PetService.CreatePet(this.petForm);
-        this.$router.push("/profile");
+        this.$router.push("/createDoacao");
       } catch (error) {
         swal({
           title: "Oops!",
