@@ -2,10 +2,12 @@
 	<div id="app">
 		<div class="sidebar">
 			<ul>
-				<router-link to="/home" class="btn">Home</router-link>
-				<router-link to="/profile" class="btn">Perfil</router-link>
-				<router-link to="/createPet" class="btn"> Doe um Pet</router-link>
-				<li><button class="btn btn-danger" @click="logOutUser()">Logout</button></li>
+				<router-link to="/home" class="btn text-dark"> <font-awesome-icon :icon="['fas', 'house']" /> Home</router-link>
+				<router-link to="/profile" class="btn text-dark"><font-awesome-icon :icon="['fas', 'user']" /> Perfil</router-link>
+				<router-link to="/createPet" class="btn text-dark"><font-awesome-icon :icon="['fas', 'paw']" /> Doe um
+					Pet</router-link>
+				<li><button class="btn btn-danger text-dark" @click="logOutUser()"> <font-awesome-icon
+							:icon="['fas', 'right-from-bracket']" /> Logout</button></li>
 			</ul>
 		</div>
 		<router-view></router-view>
@@ -16,11 +18,11 @@
 .sidebar {
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: -10px;
 	width: 200px;
 	height: 100%;
-	background-color: #333;
-	color: #fff;
+	background: linear-gradient(to bottom, #e0e0e0 0%, #c2c2c2 25%, #a5a5a5 50%, #979797 100%);
+	border-radius: 5%;
 }
 
 .sidebar ul {
@@ -53,7 +55,6 @@
 .sidebar button:hover {
 	background-color: 0;
 }
-
 </style>
 
 <script>
