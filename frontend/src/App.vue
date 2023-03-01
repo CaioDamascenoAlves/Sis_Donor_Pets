@@ -21,7 +21,7 @@
 	left: -10px;
 	width: 200px;
 	height: 100%;
-	background: linear-gradient(to bottom, #e0e0e0 0%, #c2c2c2 25%, #a5a5a5 50%, #979797 100%);
+	background: linear-gradient(to bottom, #73fc54 0%, #efd94e 33%, #eea084 66%, #56506f 99%);
 	border-radius: 5%;
 }
 
