@@ -1,7 +1,6 @@
 import swal from "sweetalert";
 import { required } from "vuelidate/lib/validators";
 import LoginService from "@/services/LoginService";
-import PessoaService from "@/services/PessoaService";
 
 export default {
   name: "LoginComponent",
@@ -38,7 +37,7 @@ export default {
         }
 
         await LoginService.loginUser(this.loginForm);
-        this.$router.push("/createPessoa");
+        this.$router.push("/home");
 		
       } catch (error) {
         swal({
