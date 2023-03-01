@@ -41,7 +41,7 @@ export default {
         }
 
         await PessoaService.CreatePessoa(this.pessoaForm);
-        this.$router.push('/profile');
+        this.$router.push('/');
       } catch (error) {
         swal({
           title: 'Algo deu errado aqui!',
