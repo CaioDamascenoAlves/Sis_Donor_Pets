@@ -13,6 +13,7 @@ const petRoutes = require("./routes/pet.routes");
 const pessoaRoutes = require("./routes/pessoa.routes");
 const doacaoRoutes = require("./routes/doacao.routes");
 const adocaoRoutes = require("./routes/adocao.routes");
+const imagensRoutes = require("./routes/imagem.routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,5 +27,6 @@ app.use("/api/", pessoaRoutes);
 app.use("/api/", petRoutes);
 app.use("/api/", adocaoRoutes);
 app.use("/api/", doacaoRoutes);
+app.use("/api/", imagensRoutes);
 
 module.exports = app;
