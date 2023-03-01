@@ -39,7 +39,7 @@ export default {
         }
 
         await RegisterService.registerNewUser(this.registerForm);
-        this.$router.push("/");
+        this.$router.push("/createPessoa");
       } catch (error) {
         swal({
           title: "Oops!",
