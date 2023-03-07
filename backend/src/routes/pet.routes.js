@@ -15,6 +15,7 @@ router.get("/allPets", petController.getAllPets);
 // ==> Rota responsável por Editar 'Pet' do usuario logado: (PUT): localhost:3000/api/allPetsCached
 router.put("/pet", auth, petController.updatePet);
 
+// ==> Rota responsável por Buscar todos 'Pets' no Redis: (GET): localhost:3000/api/allPets
 router.get("/allPetsCached", petController.getAllPetsCache);
 
 module.exports = router;
