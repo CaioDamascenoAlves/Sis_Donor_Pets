@@ -1,8 +1,9 @@
+const { getAsync, setAsync } = require("../config/redis.config");
 const User = require("../model/user.model");
-const Adocao = require('../model/adocao.model');
-const Doacao = require('../model/doacao.model');
-const Pet = require('../model/pet.model');
-const Pessoa = require('../model/pessoa.model');
+const Adocao = require("../model/adocao.model");
+const Doacao = require("../model/doacao.model");
+const Pet = require("../model/pet.model");
+const Pessoa = require("../model/pessoa.model");
 
 const checkIfEmailExists = async (email) => {
   let isUser;
@@ -61,6 +62,30 @@ const loginUser = async (req, res) => {
   }
 };
 
+const loginUserR = async (req, res) => {
+  console.time("loginUser"); // início da medição de tempo
+  try {
+    const { email } = req.body;
+    const { password } = req.body;
+    const user = await User.findByCredentials(email, password);
+    if (!user) {
+      return res.status(401).json({
+        error: "Erro ao Logar! Verifique as suas credenciais de autenticação!",
+      });
+    }
+    const token = await user.generateAuthToken();
+    const userObj = { name: user.name, email: user.email }; // exemplo de objeto com informações do usuário
+    await setAsync(user._id.toString(), JSON.stringify(userObj)); // salva as informações do usuário no Redis
+    return res
+      .status(201)
+      .json({ message: "Usuário(a) logado com sucesso!", user, token });
+  } catch (err) {
+    return res.status(400).json({ err });
+  } finally {
+    console.timeEnd("loginUser"); // fim da medição de tempo
+  }
+};
+
 // ==> Método responsável por retornar um determinado 'User'
 const returnUserProfile = async (req, res) => {
   await res.json(req.userData);
@@ -72,7 +97,7 @@ const deleteUser = async (req, res) => {
     const user = await User.findById(userId); // Encontra o usuário a ser deletado
 
     if (!user) {
-      return res.status(404).json({ message: 'Usuário não encontrado' });
+      return res.status(404).json({ message: "Usuário não encontrado" });
     }
 
     // Remove todos os documentos relacionados ao usuário
@@ -82,18 +107,52 @@ const deleteUser = async (req, res) => {
     await Pessoa.deleteMany({ user: userId });
     await User.deleteOne({ _id: userId });
 
-    return res.status(200).json({ message: 'Usuário deletado com sucesso!' });
+    return res.status(200).json({ message: "Usuário deletado com sucesso!" });
   } catch (error) {
-    return res.status(500).json({ message: 'Ocorreu um erro ao deletar o usuário', error });
+    return res
+      .status(500)
+      .json({ message: "Ocorreu um erro ao deletar o usuário", error });
   }
 };
 
+const getUserR = async (req, res) => {
+  console.time("getUser"); // início da medição de tempo
+  
+  try {
+    const user = req.userData;
+    const userObj = await getAsync(user._id.toString()); // busca as informações do usuário no Redis
+    if (!userObj) {
+      // se as informações não estiverem no Redis, busca no banco de dados
+      const userFromDB = await User.findById(user._id);
+      if (!userFromDB) {
+        return res.status(404).json({
+          message: "Usuário não encontrado",
+        });
+      }
+      return res.status(200).json({
+        user: userFromDB,
+      });
+    }
+    return res.status(200).json({
+      user: JSON.parse(userObj), // converte a string JSON armazenada no Redis em um objeto JavaScript
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao obter o usuário",
+      error,
+    });
+  } finally {
+    console.timeEnd("getUser"); // fim da medição de tempo
+  }
+};
 
 module.exports = {
   checkIfEmailExists,
   saveUserAndGenerateAuthToken,
   registerNewUser,
   loginUser,
+  loginUserR,
   returnUserProfile,
   deleteUser,
+  getUserR,
 };
