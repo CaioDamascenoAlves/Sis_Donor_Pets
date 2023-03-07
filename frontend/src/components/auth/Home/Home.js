@@ -1,17 +1,19 @@
 import PetService from "@/services/PetService";
 
 export default {
-  name: "HomeComponent.vue",
+  name: "HomeComponent",
   data() {
     return {
-      pet: {},
+      pets: [],
     };
   },
   methods: {
     async getAllPets() {
       try {
-        const response = await PetService.GetAllPet();
-        this.pet = response.pet;
+        const response = await PetService.GetAllPetsCached();
+		this.pets = response.pets;
+		console.log(this.pet)
+
       } catch (error) {
         console.error(error);
         swal({
@@ -21,12 +23,13 @@ export default {
         });
       }
     },
+
     navigateToAdocao() {
-      this.$router.push("/updatePessoa");
+      this.$router.push("/register");
     },
   },
 
-  created() {
-    this.getAllPet();
+  mounted() {
+    this.getAllPets();
   },
 };
