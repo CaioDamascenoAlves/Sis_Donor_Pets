@@ -13,10 +13,10 @@ const connectToDB = async () => {
   }
   try {
     await mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Conexão com o banco de dados estabelecida com sucesso');
+    console.log('Conexão com o banco de dados MongoDB estabelecida com sucesso');
     connected = true;
   } catch (err) {
-    console.log(`Erro ao conectar com o banco de dados: ${err}`);
+    console.log(`Erro ao conectar com o banco de dados MongoDB: ${err}`);
     process.exit(1);
   }
 };
