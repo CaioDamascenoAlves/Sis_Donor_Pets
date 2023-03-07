@@ -1,30 +1,49 @@
 <template>
 	<div id="app">
-		<div class="sidebar">
+		<div class="sidebar" :class="{ hidden: isMobile }">
 			<ul>
-				<router-link to="/home" class="btn text-dark"> <font-awesome-icon :icon="['fas', 'house']" />
-					Home</router-link>
-				<router-link to="/profile" class="btn text-dark"><font-awesome-icon :icon="['fas', 'user']" />
-					Perfil</router-link>
-				<router-link to="/createPet" class="btn text-dark"><font-awesome-icon :icon="['fas', 'paw']" /> Doe um
-					Pet</router-link>
-				<li><button class="btn btn-danger text-dark" @click="logOutUser()"> <font-awesome-icon
-							:icon="['fas', 'right-from-bracket']" /> Logout</button></li>
+				<li>
+					<router-link to="/home" class="btn text-dark">
+						<font-awesome-icon :icon="['fas', 'house']" />
+						Home
+					</router-link>
+				</li>
+				<li>
+					<router-link to="/profile" class="btn text-dark">
+						<font-awesome-icon :icon="['fas', 'user']" />
+						Perfil
+					</router-link>
+				</li>
+				<li>
+					<router-link to="/createPet" class="btn text-dark">
+						<font-awesome-icon :icon="['fas', 'paw']" />
+						Doe um Pet
+					</router-link>
+				</li>
+				<li>
+					<button class="btn btn-danger text-dark" @click="logOutUser()">
+						<font-awesome-icon :icon="['fas', 'right-from-bracket']" />
+						Logout
+					</button>
+				</li>
 			</ul>
 		</div>
-		<router-view></router-view>
+		<div class="content">
+			<router-view></router-view>
+		</div>
 	</div>
 </template>
-
+  
 <style>
 .sidebar {
 	position: fixed;
 	top: 0;
 	left: -10px;
-	width: 200px;
+	width: 120px;
 	height: 100%;
 	background: linear-gradient(to bottom, #73fc54 0%, #efd94e 33%, #eea084 66%, #56506f 99%);
 	border-radius: 5%;
+	transition: left 0.3s ease;
 }
 
 .sidebar ul {
@@ -51,16 +70,46 @@
 }
 
 .sidebar a:hover {
-	background-color: #555;
-}
+	background-color: transparent;}
 
 .sidebar button:hover {
 	background-color: 0;
 }
-</style>
 
+.content {
+	margin-left: 120px;
+	padding: 20px;
+}
+
+/* Oculta a sidebar em telas menores */
+@media (max-width: 800px) {
+	.sidebar {
+		left: -200px;
+	}
+
+	.sidebar.hidden {
+		display: none;
+	}
+
+	.content {
+		margin-left: 0;
+	}
+}
+</style>
+  
 <script>
 export default {
+	data() {
+		return {
+			isMobile: false,
+		};
+	},
+	mounted() {
+		// Verifica se é uma tela móvel
+		if (window.innerWidth < 768) {
+			this.isMobile = true;
+		}
+	},
 	methods: {
 		logOutUser() {
 			localStorage.removeItem("jwt");
@@ -68,5 +117,5 @@ export default {
 		},
 	},
 };
-
 </script>
+  
