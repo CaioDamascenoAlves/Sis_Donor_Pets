@@ -2,8 +2,10 @@
 	<div id="app">
 		<div class="sidebar">
 			<ul>
-				<router-link to="/home" class="btn text-dark"> <font-awesome-icon :icon="['fas', 'house']" /> Home</router-link>
-				<router-link to="/profile" class="btn text-dark"><font-awesome-icon :icon="['fas', 'user']" /> Perfil</router-link>
+				<router-link to="/home" class="btn text-dark"> <font-awesome-icon :icon="['fas', 'house']" />
+					Home</router-link>
+				<router-link to="/profile" class="btn text-dark"><font-awesome-icon :icon="['fas', 'user']" />
+					Perfil</router-link>
 				<router-link to="/createPet" class="btn text-dark"><font-awesome-icon :icon="['fas', 'paw']" /> Doe um
 					Pet</router-link>
 				<li><button class="btn btn-danger text-dark" @click="logOutUser()"> <font-awesome-icon
