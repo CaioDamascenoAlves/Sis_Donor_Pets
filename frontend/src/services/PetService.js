@@ -71,4 +71,17 @@ export default {
       });
     }
   },
+
+  async GetAllPetsCached() {
+    try {
+      const response = await Api().get("/allPetsCached");
+      return response.data;
+    } catch (error) {
+      swal({
+        title: "Oops!",
+        text: "Não foi possível buscar os dados do Pet!",
+        icon: "error",
+      });
+    }
+  },
 };
