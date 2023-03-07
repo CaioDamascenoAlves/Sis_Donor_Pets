@@ -35,6 +35,16 @@ exports.createPet = async (req, res) => {
   }
 };
 
+exports.getAllPets = async (req, res) => {
+	try {
+	  const pets = await Pet.find();
+	  return res.json(pets);
+	} catch (err) {
+	  console.error(err);
+	  return res.status(500).json({ error: "Erro ao buscar pets" });
+	}
+  };
+
 exports.getPet = async (req, res) => {
   try {
     const user = req.userData;
@@ -106,43 +116,28 @@ exports.updatePet = async (req, res) => {
   }
 };
 
-exports.getPetC = async (req, res) => {
+
+exports.getAllPetsCache = async (req, res) => {
   try {
-    const user = req.userData;
+    // Verifica se há dados de pets armazenados no cache do Redis usando a chave "pets"
+    const pets = await getAsync("pets");
 
-    // Verifica se o usuário já criou uma pessoa
-    const pessoa = await Pessoa.findOne({ user: user._id });
-    if (!pessoa) {
-      return res.status(400).json({
-        message: "Você precisa criar uma pessoa antes de criar um pet",
-      });
-    }
-
-    // Busca todos os pets que pertencem à pessoa do usuário logado
-    const cachedPets = await getAsync(`pets:${pessoa._id}`);
-    let pets;
-    if (cachedPets) {
-      console.log(`Buscando pets do cache para a pessoa ${pessoa._id}`);
-      pets = JSON.parse(cachedPets);
+    if (pets) {
+      // Se os dados existirem no cache do Redis, retorna-os
+      return res.status(200).json({ pets: JSON.parse(pets) });
     } else {
-      console.log(
-        `Buscando pets no banco de dados para a pessoa ${pessoa._id}`
-      );
-      pets = await Pet.find({ pessoa: pessoa._id });
-      if (pets.length) {
-        console.log(`Salvando pets do cache para a pessoa ${pessoa._id}`);
-        await setAsync(`pets:${pessoa._id}`, JSON.stringify(pets));
-      }
-    }
+      // Se não houver dados no cache do Redis, realiza uma consulta no banco de dados MongoDB para recuperar todos os pets
+      const pets = await Pet.find({}).populate("pessoa");
 
-    // Retorna a lista de pets da pessoa do usuário logado
-    return res.status(200).json({
-      pets,
-    });
+      // Armazena os dados de pets no cache do Redis
+      await setAsync("pets", JSON.stringify(pets), "EX", 3600);
+
+      // Retorna os dados de pets recuperados do banco de dados
+      return res.status(200).json({ pets });
+    }
   } catch (error) {
-    return res.status(500).json({
-      message: "Ocorreu um erro ao obter os Pets",
-      error,
-    });
+    // Se houver um erro ao recuperar os dados de pets do banco de dados ou do cache do Redis, retorna uma resposta de erro
+    return res.status(500).json({ error });
   }
 };
+
