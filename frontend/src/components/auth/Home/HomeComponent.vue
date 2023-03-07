@@ -14,7 +14,10 @@
 				<div class="card">
 					<img src="https://veterinario.pt/wp-content/uploads/2015/12/cachorrinho.jpg" class="card-img-top" alt="Imagem 2">
 					<div class="card-body">
-						<h5 class="card-title">Bili, Cão</h5>
+						<p class="card-text"><strong>Nome:</strong> {{ pet.nome }}</p>
+						<p class="card-text"><strong>Espécie:</strong> {{ pet.tipo }}</p>
+						<p class="card-text"><strong>Raça:</strong> {{ pet.raca }}</p>
+						<p class="card-text"><strong>Idade:</strong> {{ pet.idade }}</p>
 						<a href="link-da-imagem-2" class="btn btn-primary">Adotar</a>
 					</div>
 				</div>
@@ -31,3 +34,5 @@
 		</div>
 	</div>
 </template>
+
+<script src="./Home.js" ></script>

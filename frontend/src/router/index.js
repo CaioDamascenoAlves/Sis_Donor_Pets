@@ -43,6 +43,14 @@ const routes = [
     },
   },
   {
+    path: "/createImagem",
+    name: "createImagem",
+    component: () => import("../components/auth/Image/create-imagem/CreateImagemComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
     path: "/updatePessoa",
     name: "updatePessoa",
     component: () => import("../components/auth/Pessoa/edit-pessoa/EditPessoaComponent"),

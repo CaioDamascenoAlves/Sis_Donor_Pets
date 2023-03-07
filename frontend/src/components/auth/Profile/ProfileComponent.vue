@@ -21,7 +21,7 @@
 						<p class="card-text"><strong>Raça:</strong> {{ pessoa.complemento }}</p>
 						<p class="card-text"><strong>Idade:</strong> {{ pessoa.documento }}</p>
 					</div>
-					<div class="col-md-5 my-5"  >
+					<div class="col-md-5 my-5" v-show="pet" >
 						<h4 class="card-subtitle mb-2 text-muted">Dados do Pet Doado
 							<button class="btn btn-outline-success btn-sm mx-5" @click="navigateToUpdatePet">
 								<font-awesome-icon :icon="['fas', 'paw']" /> Editar</button>
