@@ -1,5 +1,5 @@
 <template>
-	<div class="container col-9 offset-2 my-5">
+	<div class="container col-9 my-5">
 		<div class="card">
 			<div class="card-body">
 				<h2 class="card-title">Perfil</h2>

@@ -3,7 +3,7 @@
 		<h1 class="text-center mb-5">Lista de Pets</h1>
 		<div class="row">
 			<div class="col-md-4 mb-4" v-for="pet in pets" :key="pet._id">
-				<div class="card shadow-sm" :style="`border: 5px solid ${getCardColor(pet)};`">
+				<div class="card shadow-sm">
 					<img :src="pet.imagemUrl" class="card-img-top" alt="Imagem do Pet">
 					<div class="card-body">
 						<h5 class="card-title">{{ pet.nome }}</h5>
@@ -21,43 +21,32 @@
 	</div>
 </template>
 
-<script>
-export default {
-	methods: {
-		getCardColor(pet) {
-			const colorStops = [
-				{ stop: 0, color: '#73fc54' },
-				{ stop: 33, color: '#efd94e' },
-				{ stop: 66, color: '#eea084' },
-				{ stop: 99, color: '#56506f' },
-			];
-			const petAgePercent = (pet.idade / 20) * 100;
-			for (let i = 1; i < colorStops.length; i++) {
-				if (petAgePercent <= colorStops[i].stop) {
-					const prevColor = colorStops[i - 1].color;
-					const nextColor = colorStops[i].color;
-					const prevStop = colorStops[i - 1].stop;
-					const nextStop = colorStops[i].stop;
-					const stopDiff = nextStop - prevStop;
-					const stopPercent = (petAgePercent - prevStop) / stopDiff;
-					const r = Math.floor(parseInt(prevColor.slice(1, 3), 16) * (1 - stopPercent) + parseInt(nextColor.slice(1, 3), 16) * stopPercent);
-					const g = Math.floor(parseInt(prevColor.slice(3, 5), 16) * (1 - stopPercent) + parseInt(nextColor.slice(3, 5), 16) * stopPercent);
-					const b = Math.floor(parseInt(prevColor.slice(5, 7), 16) * (1 - stopPercent) + parseInt(nextColor.slice(5, 7), 16) * stopPercent);
-					return `rgb(${r}, ${g}, ${b})`;
-				}
-			}
-			return colorStops[colorStops.length - 1].color;
-		},
-		logOutUser() {
-			localStorage.removeItem("jwt");
-			this.$router.push("/");
-		},
-	},
-};
-</script>
+<script src="./Home.js"></script>
 
 <style>
 .card {
-	border-radius: 15px;
+  border: none;
+  background-color: #f8f9fa;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.card-text {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 </style>

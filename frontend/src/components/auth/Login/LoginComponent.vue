@@ -2,7 +2,7 @@
 	<section class="h-100 gradient-form" style="background-color: #fff;">
 		<div class="container h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col-xl-10 offset-2">
+				<div class="col-xl-10">
 					<h3 class="form-label" for="Login">Log in</h3>
 					<div class="card rounded-3 text-black">
 						<div class="row g-0">
