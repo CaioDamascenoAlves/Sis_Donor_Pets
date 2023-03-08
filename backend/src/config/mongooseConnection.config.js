@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db = require('./db.config');
+const db = require('./db.config.js');
 
 mongoose.set('strictQuery', true);
 
