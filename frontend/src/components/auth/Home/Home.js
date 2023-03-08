@@ -12,7 +12,7 @@ export default {
       try {
         const response = await PetService.GetAllPetsCached();
 		this.pets = response.pets;
-		console.log(this.pet)
+		console.log(this.pets)
 
       } catch (error) {
         console.error(error);
@@ -23,7 +23,6 @@ export default {
         });
       }
     },
-
     navigateToAdocao() {
       this.$router.push("/register");
     },
