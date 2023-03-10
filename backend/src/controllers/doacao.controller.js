@@ -65,7 +65,6 @@ exports.updateDoacao = async (req, res) => {
       req.params._id,
       {
         data: req.body.data,
-        pet: req.body.pet,
       },
       { new: true }
     ).populate("pet");
