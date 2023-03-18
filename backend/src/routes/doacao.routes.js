@@ -12,4 +12,10 @@ router.get('/doacao', auth, doacaoController.getDoacoes);
 // ==> Rota responsável por Editar uma 'Doacao': (PUT): localhost:3000/api/doacao
 router.put('/doacao', auth, doacaoController.updateDoacao);
 
+// ==> Rota responsável por Editar uma 'Doacao': (PUT): localhost:3000/api/doacao
+router.delete('/doacao', auth, doacaoController.deleteDoacao);
+
+// ==> Rota responsável por Editar uma 'Doacao': (PUT): localhost:3000/api/doacao
+router.get('/doacao/:id', auth, doacaoController.getDoacaoById);
+
 module.exports = router;

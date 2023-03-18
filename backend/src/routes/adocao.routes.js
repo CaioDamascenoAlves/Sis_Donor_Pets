@@ -12,4 +12,7 @@ router.get('/adocao', auth, adocaoController.getAdocao);
 // ==> Rota responsável por Busca uma 'Adoção': (POST): localhost:3000/api/adocao
 router.put('/adocao', auth, adocaoController.updateAdocao);
 
+// ==> Rota responsável por Busca uma 'Adoção': (POST): localhost:3000/api/adocao
+router.delete('/adocao', auth, adocaoController.deleteAdocao);
+
 module.exports = router;

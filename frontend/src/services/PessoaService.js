@@ -72,17 +72,44 @@ export default {
     }
   },
 
-  async checkHasPessoa() {
+  async DeletePessoa(id) {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await Api().get("/checkHasPessoa", {
+      const response = await Api().delete(`/pessoa/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      return response.data.hasPessoa;
+      const { message } = response.data;
+  
+      swal({
+        title: "Sucesso!",
+        text: message,
+        icon: "success",
+      });
     } catch (error) {
+      swal({
+        title: "Oops!",
+        text: "Alguma coisa de errado ao consumir a rota (DELETE) de Pessoa!",
+        icon: "error",
+      });
+    }
+  },
+
+  async getPessoaById(id) {
+    try {
+      const token = localStorage.getItem("jwt");
+      const response = await Api().get(`/pessoa/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { pessoa } = response.data;
+      return pessoa;
+    } catch (error) {
+      console.error(error);
       throw error;
     }
   },
+  
 };

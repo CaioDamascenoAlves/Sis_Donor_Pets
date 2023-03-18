@@ -36,14 +36,14 @@ exports.createPet = async (req, res) => {
 };
 
 exports.getAllPets = async (req, res) => {
-	try {
-	  const pets = await Pet.find();
-	  return res.json(pets);
-	} catch (err) {
-	  console.error(err);
-	  return res.status(500).json({ error: "Erro ao buscar pets" });
-	}
-  };
+  try {
+    const pets = await Pet.find();
+    return res.json(pets);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Erro ao buscar pets" });
+  }
+};
 
 exports.getPet = async (req, res) => {
   try {
@@ -116,7 +116,6 @@ exports.updatePet = async (req, res) => {
   }
 };
 
-
 exports.getAllPetsCache = async (req, res) => {
   try {
     // Verifica se há dados de pets armazenados no cache do Redis usando a chave "pets"
@@ -138,6 +137,31 @@ exports.getAllPetsCache = async (req, res) => {
   } catch (error) {
     // Se houver um erro ao recuperar os dados de pets do banco de dados ou do cache do Redis, retorna uma resposta de erro
     return res.status(500).json({ error });
+  }
+};
+
+exports.deletePet = async (req, res) => {
+  const user = req.userData;
+
+    // Verifica se o usuário já criou uma pessoa
+    const pessoa = await Pessoa.findOne({ user: user._id });
+    if (!pessoa) {
+      return res.status(400).json({
+        message: "Você precisa criar uma pessoa antes de deletar um pet",
+      });
+    }
+
+  try {
+    const pet = await Pet.findOneAndDelete({ id: req.params._id, pessoa: pessoa._id },);
+    if (!pet) {
+      return res.status(404).json({ message: "Pet não encontrado" });
+    }
+    return res.status(200).json({ message: "Pet excluído com sucesso", pet });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao excluir o Pet",
+      error,
+    });
   }
 };
 

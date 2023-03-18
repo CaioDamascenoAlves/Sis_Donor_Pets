@@ -43,6 +43,14 @@ const routes = [
     },
   },
   {
+    path: "/createAdocao",
+    name: "createAdocao",
+    component: () => import("../components/auth/Adocao/create-adocao/CreateAdocaoComponent"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
     path: "/createImagem",
     name: "createImagem",
     component: () => import("../components/auth/Image/create-imagem/CreateImagemComponent"),
@@ -73,7 +81,7 @@ const routes = [
     meta: {
       requireAuth: true,
     },
-  },
+},
   {
     path: "/home",
     name: "home",

@@ -10,7 +10,7 @@
 						<p class="card-text">Idade: {{ pet.idade }}</p>
 						<p class="card-text">Tipo: {{ pet.tipo }}</p>
 						<p class="card-text">Raça: {{ pet.raca }}</p>
-						<button class="btn btn-primary " @click="logOutUser()">
+						<button class="btn btn-primary " @click="navigateToAdocao()">
 							<font-awesome-icon :icon="['fas', 'heart']" />
 							Adotar
 						</button>

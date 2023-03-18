@@ -37,7 +37,7 @@ export default {
         }
 
         await LoginService.loginUser(this.loginForm);
-        this.$router.push("/home");
+        this.$router.push("/profile");
 		
       } catch (error) {
         swal({

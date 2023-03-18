@@ -71,4 +71,27 @@ export default {
       });
     }
   },
+  async DeleteAdocao(adocao) {
+    try {
+      const token = localStorage.getItem("jwt");
+      const response = await Api().delete("/adocao", adocao, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { message } = response.data;
+
+      swal({
+        title: "Sucesso!",
+        text: message,
+        icon: "success",
+      });
+    } catch (error) {
+      swal({
+        title: "Oops!",
+        text: "Alguma coisa deu errado aqui!",
+        icon: "error",
+      });
+    }
+  },
 };

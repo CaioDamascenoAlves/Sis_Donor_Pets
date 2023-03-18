@@ -11,20 +11,18 @@ export default {
     async getAllPets() {
       try {
         const response = await PetService.GetAllPetsCached();
-		this.pets = response.pets;
-		console.log(this.pets)
-
+        this.pets = response.pets;
       } catch (error) {
         console.error(error);
         swal({
           title: "Oops!",
-          text: "Não foi possível carregar os dados da Doação.",
+          text: "Não foi possível carregar os dados de Pet.",
           icon: "error",
         });
       }
     },
-    navigateToAdocao() {
-      this.$router.push("/register");
+    navigateToAdocao(pet) {
+      this.$router.push({ path: "/createAdocao", query: { pet } });
     },
   },
 

@@ -8,7 +8,7 @@ export default {
    */
   async loginUser(user) {
     try {
-      const response = await Api().post('/login', user);
+      const response = await Api().post('/loginR', user);
       const { token } = response.data;
       localStorage.setItem('jwt', token);
 

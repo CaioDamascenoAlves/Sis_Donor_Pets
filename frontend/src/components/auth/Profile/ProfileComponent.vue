@@ -11,19 +11,23 @@
 						<p class="card-text"><strong>E-mail:</strong> {{ user.email }}</p>
 					</div>
 					
-					<div class="col-md-5 my-5">
+					<div class="col-md-5">
 						<h4 class="card-subtitle mb-2 text-muted">Dados de Pessoa
-							<button class="btn btn-outline-warning btn-sm mx-5" @click="navigateToUpdatePessoa">
+							<button class="btn btn-outline-danger btn-sm " @click="deletarPessoa">
+								<font-awesome-icon :icon="['fas', 'trash']" /></button>
+							<button class="btn btn-outline-warning btn-sm" @click="navigateToUpdatePessoa">
 								<font-awesome-icon :icon="['fas', 'user-edit']" /> Editar</button>
 						</h4>
-						<p class="card-text"><strong>Nome:</strong> {{ pessoa.rua }}</p>
-						<p class="card-text"><strong>Espécie:</strong> {{ pessoa.numero }}</p>
-						<p class="card-text"><strong>Raça:</strong> {{ pessoa.complemento }}</p>
-						<p class="card-text"><strong>Idade:</strong> {{ pessoa.documento }}</p>
+						<p class="card-text"><strong>Rua:</strong> {{ pessoa.rua }}</p>
+						<p class="card-text"><strong>Numero:</strong> {{ pessoa.numero }}</p>
+						<p class="card-text"><strong>Complemento:</strong> {{ pessoa.complemento }}</p>
+						<p class="card-text"><strong>Documento:</strong> {{ pessoa.documento }}</p>
 					</div>
-					<div class="col-md-5 my-5" v-show="pet" >
+					<div class="col-md-5 my-5">
 						<h4 class="card-subtitle mb-2 text-muted">Dados do Pet Doado
-							<button class="btn btn-outline-success btn-sm mx-5" @click="navigateToUpdatePet">
+							<button class="btn btn-outline-danger btn-sm " @click="deletarPet">
+								<font-awesome-icon :icon="['fas', 'trash']" /></button>
+							<button class="btn btn-outline-success btn-sm " @click="navigateToUpdatePet">
 								<font-awesome-icon :icon="['fas', 'paw']" /> Editar</button>
 						</h4>
 						<p class="card-text"><strong>Nome:</strong> {{ pet.nome }}</p>
@@ -34,11 +38,25 @@
 					
 					<div class="col-md-5 my-5">
 						<h4 class="card-subtitle mb-2 text-muted">Doação
-							<button class="btn btn-outline-primary btn-sm mx-5" @click="navigateToUpdateDoacao">
+							<button class="btn btn-outline-danger btn-sm " @click="deletarDoacao">
+								<font-awesome-icon :icon="['fas', 'trash']" /></button>
+							<button class="btn btn-outline-primary btn-sm " @click="navigateToUpdateDoacao">
 								<font-awesome-icon :icon="['fas', 'calendar']" /> Editar</button>
-						</h4>
-						<p class="card-text"><strong>Data:</strong> {{ doacao }}</p>
-					</div>
+							</h4>
+							<p class="card-text"><strong>Data:</strong> {{ doacao.data }}</p>
+						</div>
+						<!-- <div class="col-md-5 my-5" >
+							<h4 class="card-subtitle mb-2 text-muted">Dados do Pet Adotado
+								<button class="btn btn-outline-danger btn-sm " @click="navigateToUpdatePet">
+								<font-awesome-icon :icon="['fas', 'trash']" /></button>
+								<button class="btn btn-outline-success btn-sm " @click="navigateToUpdatePet">
+									<font-awesome-icon :icon="['fas', 'paw']" /> Editar</button>
+							</h4>
+							<p class="card-text"><strong>Adocao:</strong> {{ adocao.adocao.doacao.pet.nome }}</p>
+							<p class="card-text"><strong>Idade:</strong> {{ adocao.adocao.doacao.pet.idade }}</p>
+							<p class="card-text"><strong>Tipo:</strong> {{ adocao.adocao.doacao.pet.tipo }}</p>
+							<p class="card-text"><strong>Raça:</strong> {{ adocao.adocao.doacao.pet.raca }}</p>
+						</div> -->
 				</div>
 			</div>
 		</div>

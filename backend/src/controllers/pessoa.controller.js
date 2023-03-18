@@ -74,3 +74,40 @@ exports.updatePessoa = async (req, res) => {
     });
   }
 };
+
+exports.deletePessoa = async (req, res) => {
+  try {
+    const pessoa = await Pessoa.findOneAndDelete({
+      id: req.params._id,
+      user: req.userData._id,
+    });
+    if (!pessoa) {
+      return res.status(404).json({ message: "Pessoa não encontrada" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Pessoa excluída com sucesso", pessoa });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao excluir a Pessoa",
+      error,
+    });
+  }
+};
+
+exports.getPessoaById = async (req, res) => {
+  try {
+    const pessoa = await Pessoa.findById(req.params.id).populate("user");
+    if (!pessoa) {
+      return res.status(404).json({ message: "Pessoa não encontrada" });
+    }
+    return res.status(200).json({ pessoa });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao buscar a Pessoa",
+      error,
+    });
+  }
+};
+
+

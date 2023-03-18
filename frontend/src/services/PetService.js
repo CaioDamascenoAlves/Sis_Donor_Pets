@@ -71,6 +71,29 @@ export default {
       });
     }
   },
+  async DeletePet(id) {
+    try {
+      const token = localStorage.getItem("jwt");
+      const response = await Api().delete(`/pet/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { message } = response.data;
+  
+      swal({
+        title: "Sucesso!",
+        text: message,
+        icon: "success",
+      });
+    } catch (error) {
+      swal({
+        title: "Oops!",
+        text: "Alguma coisa de errado ao consumir a rota (DELETE) de Pet!",
+        icon: "error",
+      });
+    }
+  },
 
   async GetAllPetsCached() {
     try {

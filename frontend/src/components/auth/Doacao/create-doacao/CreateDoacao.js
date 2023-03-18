@@ -37,7 +37,7 @@ export default {
         }
 
         await DoacaoService.CreateDoacao(this.doacaoForm);
-        this.$router.push("/profile");
+        this.$router.push("/home");
       } catch (error) {
         swal({
           title: "Oops!",

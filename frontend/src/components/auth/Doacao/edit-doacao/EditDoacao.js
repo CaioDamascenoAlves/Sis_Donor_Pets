@@ -16,7 +16,6 @@ export default {
   validations: {
     doacaoForm: {
       data: { required },
-
     },
   },	
   methods: {

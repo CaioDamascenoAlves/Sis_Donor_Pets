@@ -71,4 +71,52 @@ export default {
       });
     }
   },
+
+  async DeleteDoacao(id) {
+    try {
+      const token = localStorage.getItem("jwt");
+      const response = await Api().delete(`/doacao/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { message } = response.data;
+  
+      swal({
+        title: "Sucesso!",
+        text: message,
+        icon: "success",
+      });
+    } catch (error) {
+      swal({
+        title: "Oops!",
+        text: "Alguma coisa de errado ao consumir a rota (DELETE) de Doacao!",
+        icon: "error",
+      });
+    }
+  },
+
+  async GetDoacaoById(id) {
+    try {
+      const token = localStorage.getItem("jwt");
+      const response = await Api().get(`/doacao/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const { doacao } = response.data;
+      return doacao;
+    } catch (error) {
+      swal({
+        title: "Oops!",
+        text: "Alguma coisa de errado ao consumir a rota (GET) de Doacao!",
+        icon: "error",
+      });
+      throw error;
+    }
+  }
+  
+  
+  
 };
+

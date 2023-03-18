@@ -18,4 +18,10 @@ router.put("/pet", auth, petController.updatePet);
 // ==> Rota responsável por Buscar todos 'Pets' no Redis: (GET): localhost:3000/api/allPets
 router.get("/allPetsCached", petController.getAllPetsCache);
 
+// ==> Rota responsável por deletar um 'Pets' : (GET): localhost:3000/api/pet
+router.delete("/pet", auth, petController.deletePet);
+
+// ==> Rota responsável por deletar um 'Pets' : (GET): localhost:3000/api/pet
+router.delete("/pet/:id", auth, petController.deletePet);
+
 module.exports = router;

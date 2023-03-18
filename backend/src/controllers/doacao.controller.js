@@ -5,8 +5,8 @@ const Pessoa = require("../model/pessoa.model");
 exports.createDoacao = async (req, res) => {
   try {
     const user = req.userData;
-    const pet = await Pet.findOne(req.body.pet);
     const pessoa = await Pessoa.findOne({ user: user._id });
+    const pet = await Pet.findOne({ user: user._id });
 
     if (!pet) {
       return res.status(404).json({ message: "Pet não encontrado" });
@@ -29,7 +29,6 @@ exports.createDoacao = async (req, res) => {
       pessoa: pessoa._id,
     });
 
-    pet.adotado = true;
     await pet.save();
     await newDoacao.save();
 
@@ -47,13 +46,30 @@ exports.createDoacao = async (req, res) => {
 
 exports.getDoacoes = async (req, res) => {
   try {
-    const doacoes = await Doacao.findOne({ user: req.userData._id }).populate(
-      "pet pessoa user"
-    );
+    const doacoes = await Doacao.findOne({ user: req.userData._id }).populate("pessoa pet user");
     return res.status(200).json(doacoes);
   } catch (error) {
     return res.status(500).json({
       message: "Ocorreu um erro ao buscar as doações",
+      error,
+    });
+  }
+};
+
+exports.getDoacaoById = async (req, res) => {
+  try {
+    const doacao = await Doacao.findById(req.params.id).populate("pet pessoa");
+    if (!doacao) {
+      return res.status(404).json({ message: "Doação não encontrada" });
+    }
+    // Verifica se o usuário é o mesmo que criou a doação
+    if (doacao.user.toString() !== req.userData._id) {
+      return res.status(401).json({ message: "Não autorizado" });
+    }
+    return res.status(200).json({ doacao });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao buscar a Doação",
       error,
     });
   }
@@ -79,6 +95,33 @@ exports.updateDoacao = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: "Ocorreu um erro ao atualizar a Doação",
+      error,
+    });
+  }
+};
+
+exports.deleteDoacao = async (req, res) => {
+  try {
+    const doacao = await Doacao.findOneAndDelete(
+      {
+        _id: req.params._id,
+        usuario: req.user._id,
+      },
+      {
+        data: req.body.data,
+      },
+    ).populate("pet");
+
+    if (!doacao) {
+      return res.status(404).json({ message: "Doação não encontrada" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Doação deletada com sucesso", doacao });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Ocorreu um erro ao deletar a Doação",
       error,
     });
   }
