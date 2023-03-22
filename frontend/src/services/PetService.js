@@ -40,11 +40,11 @@ export default {
       });
       return response.data;
     } catch (error) {
-      swal({
-        title: "Oops!",
-        text: "Não foi possivel buscar os dados do Pet!",
-        icon: "error",
-      });
+      // swal({
+      //   title: "Oops!",
+      //   text: "Não foi possivel buscar os dados do Pet!",
+      //   icon: "error",
+      // });
     }
   },
 
@@ -100,11 +100,11 @@ export default {
       const response = await Api().get("/allPetsCached");
       return response.data;
     } catch (error) {
-      swal({
-        title: "Oops!",
-        text: "Não foi possível buscar os dados do Pet!",
-        icon: "error",
-      });
+      // swal({
+      //   title: "Oops!",
+      //   text: "Não foi possível buscar os dados do Pet!",
+      //   icon: "error",
+      // });
     }
   },
 };

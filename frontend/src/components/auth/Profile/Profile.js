@@ -27,11 +27,11 @@ export default {
         this.pessoa = response.pessoa;
       } catch (error) {
         console.error(error);
-        swal({
-          title: "Oops!",
-          text: "Não foi possível carregar os dados da Pessoa.",
-          icon: "error",
-        });
+        // swal({
+        //   title: "Oops!",
+        //   text: "Não foi possível carregar os dados da Pessoa.",
+        //   icon: "error",
+        // });
       }
     },
 
@@ -112,11 +112,11 @@ export default {
         this.pet = response.pet;
       } catch (error) {
         console.error(error);
-        swal({
-          title: "Oops!",
-          text: "Não foi possível carregar os dados da Pet.",
-          icon: "error",
-        });
+        // swal({
+        //   title: "Oops!",
+        //   text: "Não foi possível carregar os dados da Pet.",
+        //   icon: "error",
+        // });
       }
     },
 
@@ -128,11 +128,11 @@ export default {
         console.log(this.doacao);
       } catch (error) {
         console.error(error);
-        swal({
-          title: "Oops!",
-          text: "Não foi possível carregar os dados do Pet.",
-          icon: "error",
-        });
+        // swal({
+        //   title: "Oops!",
+        //   text: "Não foi possível carregar os dados do Pet.",
+        //   icon: "error",
+        // });
       }
     },
     async getAdocao() {
@@ -141,11 +141,11 @@ export default {
         this.adocao = response;
       } catch (error) {
         console.error(error);
-        swal({
-          title: "Oops!",
-          text: "Não foi possível carregar os dados de Adoção.",
-          icon: "error",
-        });
+        // swal({
+        //   title: "Oops!",
+        //   text: "Não foi possível carregar os dados de Adoção.",
+        //   icon: "error",
+        // });
       }
     },
 

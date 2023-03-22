@@ -40,11 +40,11 @@ export default {
       });
       return response.data;
     } catch (error) {
-      swal({
-        title: "Oops!",
-        text: "Alguma coisa deu errado aqui!",
-        icon: "error",
-      });
+      // swal({
+      //   title: "Oops!",
+      //   text: "Alguma coisa deu errado aqui!",
+      //   icon: "error",
+      // });
     }
   },
 

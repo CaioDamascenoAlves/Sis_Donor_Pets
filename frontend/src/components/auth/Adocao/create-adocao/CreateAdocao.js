@@ -30,11 +30,11 @@ export default {
         // console.log(response);
       } catch (error) {
         console.error(error);
-        swal({
-          title: "Oops!",
-          text: "Não foi possível carregar os dados do Pet.",
-          icon: "error",
-        });
+        // swal({
+        //   title: "Oops!",
+        //   text: "Não foi possível carregar os dados do Pet.",
+        //   icon: "error",
+        // });
       }
     },
 
@@ -57,11 +57,11 @@ export default {
         await AdocaoService.CreateAdocao(this.adocaoForm );
         this.$router.push("/home");
       } catch (error) {
-        swal({
-          title: "Oops!",
-          text: "Alguma coisa deu errado aqui!",
-          icon: "error",
-        });
+        // swal({
+        //   title: "Oops!",
+        //   text: "Alguma coisa deu errado aqui!",
+        //   icon: "error",
+        // });
       }
     },
 
